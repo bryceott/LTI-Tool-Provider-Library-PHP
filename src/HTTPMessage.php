@@ -132,7 +132,9 @@ class HTTPMessage
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLINFO_HEADER_OUT, true);
             curl_setopt($ch, CURLOPT_HEADER, true);
-            curl_setopt($ch, CURLOPT_SSLVERSION,3);
+//Remove this setting to allow default SSL to be negotiated. 
+//Fixes issues connecting to some LTI providers wbo don't support outdated SSL v3
+//            curl_setopt($ch, CURLOPT_SSLVERSION,3);
             $chResp = curl_exec($ch);
             $this->ok = $chResp !== false;
             if ($this->ok) {
